@@ -1,4 +1,6 @@
 import './portfolio.css';
+import { Link } from 'react-router-dom';
+import { AppRoutes } from '../../constants/constants';
 import arrow from '../../images/arrow.svg';
 
 function Portfolio() {
@@ -19,10 +21,10 @@ function Portfolio() {
           </a>
         </li>
         <li className='portfolio__list-item'>
-          <a className='portfolio__link' href='#'>
+          <Link className='portfolio__link' to={AppRoutes.Movies} >
             <p className='portfolio__link-title'>Одностраничное приложение</p>
             <img src={arrow} className='portfolio__arrow-icon' />
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

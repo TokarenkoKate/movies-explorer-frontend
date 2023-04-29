@@ -5,4 +5,5 @@ export const AppRoutes = {
   Profile: '/profile',
   SignIn: '/signin',
   SignUp: '/signup',
+  NotFound: '*',
 };

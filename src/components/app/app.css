@@ -21,6 +21,14 @@
   overflow: hidden;
 }
 
+.page__container:has(.sign-up) {
+  flex-direction: unset;
+}
+
+.page__container:has(.sign-in) {
+  flex-direction: unset;
+}
+
 .page__overlay {
   z-index: -10;
   display: none;

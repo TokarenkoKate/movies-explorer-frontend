@@ -1,13 +1,15 @@
+import { AppRoutes } from '../../constants/constants';
 import './navigation.css';
+import { Link } from 'react-router-dom';
 
 function Navigation() {
   return (
     <ul className='navigation'>
       <li className='navigation__link-wrapper'>
-        <a href='#' className='navigation__link navigation__link_signup'>Регистрация</a>
+        <Link to={AppRoutes.SignUp} className='navigation__link navigation__link_signup'>Регистрация</Link>
       </li>
       <li className='navigation__link-wrapper navigation__link-wrapper_singin'>
-        <a href='#' className='navigation__link navigation__link_signin'>Войти</a>
+        <Link to={AppRoutes.SignIn} className='navigation__link navigation__link_signin'>Войти</Link>
       </li>
     </ul>
   )

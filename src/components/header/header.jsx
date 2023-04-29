@@ -5,7 +5,7 @@ import Logo from '../logo/logo';
 import Menu from '../menu/menu';
 import Navigation from '../navigation/navigation';
 
-function Header({ menuOpened, onMenuToggle }) {
+function Header({ menuOpened, onMenuToggle, closeMenu }) {
   const location = useLocation();
 
   return (
@@ -18,7 +18,7 @@ function Header({ menuOpened, onMenuToggle }) {
           )}
         {
           (location.pathname === AppRoutes.Movies || location.pathname === AppRoutes.SavedMovies || location.pathname === AppRoutes.Profile) && (
-            <Menu menuOpened={menuOpened} onMenuToggle={onMenuToggle} />
+            <Menu menuOpened={menuOpened} onMenuToggle={onMenuToggle} closeMenu={closeMenu} />
           )
         }
       </nav>
