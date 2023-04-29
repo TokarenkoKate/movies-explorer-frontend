@@ -17,7 +17,7 @@ function Header({ menuOpened, onMenuToggle }) {
             <Navigation />
           )}
         {
-          (location.pathname === AppRoutes.Movies || location.pathname === AppRoutes.SavedMovies) && (
+          (location.pathname === AppRoutes.Movies || location.pathname === AppRoutes.SavedMovies || location.pathname === AppRoutes.Profile) && (
             <Menu menuOpened={menuOpened} onMenuToggle={onMenuToggle} />
           )
         }

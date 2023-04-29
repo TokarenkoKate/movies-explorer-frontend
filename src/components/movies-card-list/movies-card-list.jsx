@@ -22,7 +22,7 @@ function MoviesCardList() {
         <MovieCard />
         <MovieCard />
       </ul>
-      {location.pathname === AppRoutes.Main && (
+      {location.pathname === AppRoutes.Movies && (
         <button className='movies-card-list__button'>
           Еще
         </button>

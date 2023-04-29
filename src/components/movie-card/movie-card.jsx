@@ -1,10 +1,14 @@
 import './movie-card.css';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppRoutes } from '../../constants/constants';
 import movieImage from '../../images/example.jpg';
 
 function MovieCard() {
   const location = useLocation();
+  const [activeLike, setActiveLike] = useState(false);
+
+  const toggleLikeCard = () => setActiveLike(!activeLike);
 
   return (
     <li className='movie-card'>
@@ -12,8 +16,12 @@ function MovieCard() {
       <div className='movie-card__content'>
         <div className='movie-card__row'>
           <p className='movie-card__title'>33 слова о дизайне</p>
-          { location.pathname === AppRoutes.Movies && <button className='movie-card__like-btn' /> }
-          { location.pathname === AppRoutes.SavedMovies && <button className='movies-card__delete-btn' />}
+          {location.pathname === AppRoutes.Movies && (
+            <button className={
+              `movie-card__like-btn ${activeLike ? 'movie-card__like-btn_active' : ''}`} onClick={toggleLikeCard
+            } />
+          )}
+          {location.pathname === AppRoutes.SavedMovies && <button className='movies-card__delete-btn' />}
         </div>
         <p className='movie-card__duration'>1ч 47м</p>
       </div>
