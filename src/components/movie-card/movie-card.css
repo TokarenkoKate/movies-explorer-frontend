@@ -104,6 +104,7 @@
   background-position: center;
   background-repeat: no-repeat;
   border: none;
+  border-radius: 50%;
   outline: none;
   cursor: pointer;
 }
@@ -135,7 +136,16 @@
   background-image: url(../../images/close.svg);
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 50%;
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.movie-card__like-btn:hover, .movies-card__delete-btn:hover, .movie-card__like-btn:focus, .movies-card__delete-btn:focus {
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+.movie-card__like-btn:active, .movies-card__delete-btn:active {
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 15px;
 }

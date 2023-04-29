@@ -1,5 +1,5 @@
 import './about-me.css';
-import photo from '../../images/cat.avif';
+import profileImage from '../../images/profile-image.jpg';
 import Portfolio from '../portfolio/portfolio';
 
 function AboutMe() {
@@ -12,15 +12,15 @@ function AboutMe() {
           <h2 className='about-me__name'>Екатерина</h2>
           <p className='about-me__occupation'>Фронтенд-разработчик, 26 лет</p>
           <p className='about-me__description'>
-            Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена
-            и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. 
-            С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, 
-            начал заниматься фриланс-заказами и ушёл с постоянной работы.
+            Я родилась в городе Ростов-на-Дону, сейчас проживаю в Израиле, город Хайфа.
+            По образованию я переводчик английского и немецкого языков. В 2022г. я решила сменить специальность и 
+            начала изучать веб-разработку. Так же, мне нравится мобильная разработка на React Native. 
+            В свободное время еще увлекаюсь 3D моделированием и скульптингом.
           </p>
-          <a className='about-me__link' href='#'>Github</a>
+          <a className='about-me__link' href='https://github.com/TokarenkoKate'>Github</a>
         </div>
         <div className='about-me__row'>
-          <img src={photo} className='about-me__photo' />
+          <img src={profileImage} className='about-me__photo' />
         </div>
       </div>
       <Portfolio />

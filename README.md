@@ -1,1 +1,3 @@
-# Front-end для проекта Movies Explorer
+## Front-end для проекта Movies Explorer
+
+[Дизайн макет в Figma.](https://disk.yandex.ru/d/1MeKZ6_kjU43dQ)

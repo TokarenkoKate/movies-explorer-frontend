@@ -5,7 +5,7 @@ import { AppRoutes } from '../../constants/constants';
 
 function Logo() {
   return (
-    <Link to={AppRoutes.Main}>
+    <Link to={AppRoutes.Main} tabIndex='1'>
       <img src={logo} alt="Логотип" className='logo' />
     </Link>
   )

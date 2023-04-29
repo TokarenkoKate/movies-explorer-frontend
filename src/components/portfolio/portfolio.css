@@ -49,6 +49,11 @@
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.portfolio__list-item:hover .portfolio__link {
+  opacity: 0.6;
 }
 
 .portfolio__link-title {

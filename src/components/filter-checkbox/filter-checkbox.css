@@ -67,7 +67,7 @@
 }
 
 .filter-checkbox__input:focus + .filter-checkbox__slider {
-  box-shadow: 0 0 1px #F5F5F5;
+  box-shadow: 0 0 1px #989898;
 }
 
 .filter-checkbox__input:checked + .filter-checkbox__slider:before {

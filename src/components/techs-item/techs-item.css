@@ -6,6 +6,11 @@
   justify-content: center;
   background-color: #E8E8E8;
   border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.techs__item:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;;
 }
 
 @media screen and (max-width: 768px) {
@@ -23,6 +28,7 @@
   text-align: center;
   letter-spacing: -0.04em;
   color: #000000;
+  user-select: none;
 }
 
 @media screen and (max-width: 768px) {

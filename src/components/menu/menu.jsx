@@ -27,9 +27,9 @@ function Menu({menuOpened, onMenuToggle, closeMenu}) {
             Сохранённые фильмы
           </NavLink>
         </div>
-        <Link to={AppRoutes.Profile} onClick={closeMenu} className='menu__link'>
+        <Link to={AppRoutes.Profile} onClick={closeMenu} className='menu__account-link'>
           <div className='menu__account-container'>
-            <p className='menu__account-link'>
+            <p className='menu__account-text'>
               Аккаунт
             </p>
             <div className='menu__account-icon-wrapper'>

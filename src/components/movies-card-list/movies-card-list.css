@@ -46,8 +46,12 @@
   color: #000000;
   border-radius: 6px;
   border: none;
-  outline: none;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.movies-card-list__button:hover {
+  background-color: #cecece;
 }
 
 @media screen and (max-width: 520px) {

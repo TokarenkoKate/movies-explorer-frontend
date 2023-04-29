@@ -19,6 +19,7 @@
   line-height: 16px;
   font-weight: 500;
   text-decoration: none;
+  transition: opacity 0.3s ease;
 }
 
 @media screen and (max-width: 520px) {
@@ -30,10 +31,16 @@
 
 .navigation__link_signup {
   color: #FFFFFF;
+  position: relative;
+}
+
+.navigation__link:hover, .navigation__link-wrapper_singin:hover {
+  opacity: 0.7;
 }
 
 .navigation__link_signin {
   color: #000000;
+  transition: opacity 0.2s ease;
 }
 
 .navigation__link-wrapper {
@@ -49,6 +56,8 @@
   padding: 8px 0;
   background-color: #2BE080;
   border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 @media screen and (max-width: 520px) {
