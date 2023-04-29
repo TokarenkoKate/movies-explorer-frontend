@@ -7,12 +7,12 @@ import AboutMe from '../about-me/about-me';
 function Main() {
 
   return (
-    <>
+    <main>
       <Promo />
       <AboutProject />
       <Techs  />
       <AboutMe />
-    </>
+    </main>
   )
 }
 

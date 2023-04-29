@@ -1,0 +1,49 @@
+.saved-movies {
+  width: 100%;
+  padding: 190px 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 814px) {
+  .saved-movies {
+    padding: 60px 0 92px;
+  }
+}
+
+.saved-movies__search-container {
+  padding: 0 70px 83px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 41px;
+}
+
+.saved-movies__search-container::after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #AAAAAA;
+  opacity: 0.2;
+}
+
+@media screen and (max-width: 768px) {
+  .saved-movies__search-container {
+    flex-direction: column;
+    gap: 38px;
+    padding-bottom: 57px;
+    padding: 0 30px 57px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .saved-movies__search-container {
+    gap: 45px;
+    padding: 0 10px 44px;
+  }
+}
