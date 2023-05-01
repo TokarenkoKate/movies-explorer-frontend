@@ -12,7 +12,7 @@ function MovieCard() {
 
   return (
     <li className='movie-card'>
-      <img src={movieImage} className='movie-card__image' />
+      <img src={movieImage} className='movie-card__image' alt='Постер фильма: 33 слова о дизайне' />
       <div className='movie-card__content'>
         <div className='movie-card__row'>
           <p className='movie-card__title'>33 слова о дизайне</p>
@@ -21,7 +21,7 @@ function MovieCard() {
               `movie-card__like-btn ${activeLike ? 'movie-card__like-btn_active' : ''}`} onClick={toggleLikeCard
             } />
           )}
-          {location.pathname === AppRoutes.SavedMovies && <button className='movies-card__delete-btn' />}
+          {location.pathname === AppRoutes.SavedMovies && <button className='movie-card__delete-btn' />}
         </div>
         <p className='movie-card__duration'>1ч 47м</p>
       </div>

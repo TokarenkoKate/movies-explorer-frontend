@@ -2,13 +2,17 @@ import './search-form.css';
 import searchIcon from '../../images/search.svg';
 
 function SearchForm() {
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <div className='search'>
-      <input className='search__input' placeholder="Фильм" />
+    <form tabindex='0' className='search' onSubmit={handleSubmitForm}>
+      <input className='search__input' placeholder="Фильм" required />
       <button className='search__button'>
-        <img className='search__icon' src={searchIcon} />
+        <img className='search__icon' src={searchIcon} alt='Иконка отправки формы поика фильмов' />
       </button>
-    </div>
+    </form>
   )
 }
 

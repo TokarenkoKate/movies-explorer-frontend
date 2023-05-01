@@ -21,11 +21,12 @@ function AuthForm({ buttonText }) {
               name='auth-form-name'
               placeholder='Имя'
               type='text'
+              required
             />
             <span className='auth-form__input-error'>some error</span>
           </label>
         )}
-        <label htmlFor='auth-form-name' className='auth-form__input-label'>
+        <label htmlFor='auth-form-email' className='auth-form__input-label'>
           E-mail
           <input
             className='auth-form__input'
@@ -33,10 +34,11 @@ function AuthForm({ buttonText }) {
             name='auth-form-email'
             placeholder='E-mail'
             type='email'
+            required
           />
           <span className='auth-form__input-error'></span>
         </label>
-        <label htmlFor='auth-form-name' className='auth-form__input-label'>
+        <label htmlFor='auth-form-password' className='auth-form__input-label'>
           Пароль
           <input
             className='auth-form__input'
@@ -44,6 +46,7 @@ function AuthForm({ buttonText }) {
             name='auth-form-password'
             placeholder='Пароль'
             type='password'
+            required
           />
           <span className='auth-form__input-error'></span>
         </label>

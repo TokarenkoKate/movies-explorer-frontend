@@ -32,11 +32,11 @@
 
 @media screen and (max-width: 768px) {
   .sign-in__title {
-    margin: 36px 0 43px;
+    margin: 38px 0;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 520px) {
   .sign-in__title {
     margin: 46px 0 80px;
   }

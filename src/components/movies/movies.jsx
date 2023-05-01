@@ -1,6 +1,6 @@
 import './movies.css';
 import SearchForm from '../search-form/search-form';
-import MoviesCardList from '../movies-card-list/movies-card-list';
+import MoviesCatalogue from '../movies-card-list/movies-catalogue';
 import FilterCheckbox from '../filter-checkbox/filter-checkbox';
 
 function Movies() {
@@ -10,7 +10,7 @@ function Movies() {
         <SearchForm />
         <FilterCheckbox />
       </div>
-      <MoviesCardList />
+      <MoviesCatalogue />
     </div>
   )
 }

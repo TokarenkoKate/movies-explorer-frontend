@@ -1,16 +1,16 @@
-import './movies-card-list.css';
+import './movies-catalogue.css';
 import { useLocation } from 'react-router-dom';
 import MovieCard from "../movie-card/movie-card";
 import { AppRoutes } from '../../constants/constants';
 // import Preloader from '../preloader/preloader';
 
-function MoviesCardList() {
+function MoviesCatalogue() {
   const location = useLocation();
 
   return (
-    <div className='movies-card-list__container'>
+    <div className='movies-сatalogue'>
       {/* <Preloader /> */}
-      <ul className='movies-card-list'>
+      <ul className='movies-сatalogue__list'>
         <MovieCard />
         <MovieCard />
         <MovieCard />
@@ -25,7 +25,7 @@ function MoviesCardList() {
         <MovieCard />
       </ul>
       {location.pathname === AppRoutes.Movies && (
-        <button className='movies-card-list__button'>
+        <button className='movies-сatalogue__button'>
           Еще
         </button>
       )}
@@ -33,4 +33,4 @@ function MoviesCardList() {
   )
 }
 
-export default MoviesCardList;
+export default MoviesCatalogue;

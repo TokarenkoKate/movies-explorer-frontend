@@ -8,7 +8,7 @@ function Menu({menuOpened, onMenuToggle, closeMenu}) {
   return (
     <>
       <BurgerMenu onMenuToggle={onMenuToggle} />
-      <ul className={`menu ${menuOpened ? 'menu_open' : ''}`}>
+      <div className={`menu ${menuOpened ? 'menu_open' : ''}`}>
         <div className='menu__cross' onClick={closeMenu}>
           <div className='menu__cross-bar menu__cross-bar_1'></div>
           <div className='menu__cross-bar menu__cross-bar_2'></div>
@@ -33,11 +33,11 @@ function Menu({menuOpened, onMenuToggle, closeMenu}) {
               Аккаунт
             </p>
             <div className='menu__account-icon-wrapper'>
-              <img src={accountIcon} className='menu__acount-icon' />
+              <img src={accountIcon} className='menu__acount-icon' alt='Иконка открытия страницы аккаунта пользователя' />
             </div>
           </div>
         </Link>
-      </ul>
+      </div>
     </>
   )
 }

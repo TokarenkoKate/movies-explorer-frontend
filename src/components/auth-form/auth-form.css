@@ -1,13 +1,13 @@
 .auth-form {
   width: 100%;
+  min-height: 384px;
   display: flex;
   flex-direction: column;
-  gap: 69px;
 }
 
 @media screen and (max-width: 520px) {
   .auth-form {
-    gap: 154px;
+    min-height: 468px;
   }
 }
 
@@ -59,6 +59,7 @@
 .auth-form__submit-btn {
   height: 45px;
   width: 100%;
+  margin-top: auto;
   padding: 13px;
   box-sizing: border-box;
   background-color: #FF6838;

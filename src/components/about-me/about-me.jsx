@@ -20,7 +20,7 @@ function AboutMe() {
           <a className='about-me__link' href='https://github.com/TokarenkoKate'>Github</a>
         </div>
         <div className='about-me__row'>
-          <img src={profileImage} className='about-me__photo' />
+          <img src={profileImage} className='about-me__photo' alt='Фото профиля' />
         </div>
       </div>
       <Portfolio />
