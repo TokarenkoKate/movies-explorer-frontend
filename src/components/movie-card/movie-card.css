@@ -1,0 +1,151 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 364px;
+  height: 281px;
+  background: #FDFDFD;
+  border-radius: 6px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 814px) {
+  .movie-card {
+    width: 339px;
+    height: 262px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .movie-card {
+    width: 300px;
+    height: 237px;
+  }
+}
+
+.movie-card__image {
+  width: 364px;
+  height: 203px;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+}
+
+@media screen and (max-width: 814px) {
+  .movie-card__image {
+    width: 339px;
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .movie-card__image {
+    width: 300px;
+    height: 168px;
+  }
+}
+
+.movie-card__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 9px 16px 16px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 814px) {
+  .movie-card__content {
+    padding: 8px 14px 14px;
+    gap: 7px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .movie-card__content {
+    padding: 7px 10px 14px 14px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .movie-card {
+    width: 300px;
+    height: 237px;
+  }
+}
+
+.movie-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-card__title {
+  margin: 0;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+}
+
+@media screen and (max-width: 520px) {
+  .movie-card__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.movie-card__like-btn {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  background-image: url(../../images/like_empty.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+.movie-card__like-btn_active {
+  background-image: url(../../images/like_filled.svg);
+}
+
+.movie-card__duration {
+  margin: 0;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #A0A0A0;
+}
+
+@media screen and (max-width: 520px) {
+  .movie-card__duration {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+.movie-card__delete-btn {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  background-image: url(../../images/close.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.movie-card__like-btn:hover, .movies-card__delete-btn:hover, .movie-card__like-btn:focus, .movies-card__delete-btn:focus {
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+.movie-card__like-btn:active, .movies-card__delete-btn:active {
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 15px;
+}

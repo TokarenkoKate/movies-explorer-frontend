@@ -1,0 +1,39 @@
+.techs__item {
+  width: 90px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E8E8E8;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.techs__item:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__item {
+    width: 84px;
+    height: 57px;
+  }
+}
+
+.techs__item-title {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #000000;
+  user-select: none;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__item-title {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
