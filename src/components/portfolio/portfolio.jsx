@@ -1,7 +1,7 @@
 import './portfolio.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../../constants/constants';
+import AppRoutes from '../../constants/constants';
 import arrow from '../../images/arrow.svg';
 
 function Portfolio() {

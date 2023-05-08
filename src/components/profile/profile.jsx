@@ -1,7 +1,7 @@
 import './profile.css';
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../../constants/constants';
+import AppRoutes from '../../constants/constants';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { editUserInfo } from '../../services/MainApi';
 import { useFormWithValidation } from '../../hooks/useFormWithValidations';

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import { AppRoutes } from '../../constants/constants';
+import AppRoutes from '../../constants/constants';
 
 const ProtectedRoute = ({ element: Component, ...props }) => {
   const navigate = useNavigate();

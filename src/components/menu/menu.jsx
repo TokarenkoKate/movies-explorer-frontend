@@ -1,7 +1,7 @@
 import './menu.css';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { AppRoutes } from '../../constants/constants';
+import AppRoutes from '../../constants/constants';
 import BurgerMenu from '../burger-menu/burger-menu.jsx';
 import accountIcon from '../../images/account_icon.svg';
 

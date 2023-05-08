@@ -1,4 +1,4 @@
-export const AppRoutes = {
+const AppRoutes = {
   Main: '/',
   Movies: '/movies',
   SavedMovies: '/saved-movies',
@@ -7,3 +7,5 @@ export const AppRoutes = {
   SignUp: '/signup',
   NotFound: '*',
 };
+
+export default AppRoutes;

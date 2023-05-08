@@ -1,6 +1,6 @@
 import './techs-list.css';
 import React from 'react';
-import TechsItem from '../techs-item/techs-item';
+import TechsItem from '../techs-item/techs-item.jsx';
 
 function TechsList() {
   const technologies = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];

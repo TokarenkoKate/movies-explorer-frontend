@@ -1,5 +1,6 @@
-import TechsList from '../techs-list/techs-list';
 import './techs.css';
+import React from 'react';
+import TechsList from '../techs-list/techs-list.jsx';
 
 function Techs() {
   return (
@@ -9,13 +10,13 @@ function Techs() {
       <div className='techs__container'>
         <h2 className='techs__heading'>7 технологий</h2>
         <p className='techs__description'>
-          На курсе веб-разработки мы освоили технологии, 
+          На курсе веб-разработки мы освоили технологии,
           которые применили в дипломном проекте.
         </p>
         <TechsList />
       </div>
     </section>
-  )
+  );
 }
 
 export default Techs;

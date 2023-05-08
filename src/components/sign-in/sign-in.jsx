@@ -1,7 +1,7 @@
 import './sign-in.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AppRoutes } from '../../constants/constants';
+import AppRoutes from '../../constants/constants';
 import Logo from '../logo/logo.jsx';
 import AuthForm from '../auth-form/auth-form.jsx';
 import { authorize } from '../../services/MainApi';
@@ -16,9 +16,9 @@ function SignIn({ onSignIn }) {
   const handleSubmit = (values) => {
     setButtonText('Загрузка...');
 
-    const { auth_form_email, auth_form_password } = values;
+    const { authFormEmail, authFormPassword } = values;
 
-    authorize(auth_form_email, auth_form_password)
+    authorize(authFormEmail, authFormPassword)
       .then((res) => {
         if (res.token) {
           onSignIn(true);

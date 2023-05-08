@@ -1,7 +1,7 @@
 import './sign-up.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AppRoutes } from '../../constants/constants';
+import AppRoutes from '../../constants/constants';
 import { register } from '../../services/MainApi';
 import Logo from '../logo/logo.jsx';
 import AuthForm from '../auth-form/auth-form.jsx';
@@ -16,9 +16,9 @@ function SignUp() {
   const handleRegister = (values) => {
     setButtonText('Загрузка...');
 
-    const { auth_form_name, auth_form_email, auth_form_password } = values;
+    const { authFormName, authFormEmail, authFormPassword } = values;
 
-    register(auth_form_name, auth_form_email, auth_form_password)
+    register(authFormName, authFormEmail, authFormPassword)
       .then((res) => {
         if (res) {
           navigate(AppRoutes.SignIn, { replace: true });

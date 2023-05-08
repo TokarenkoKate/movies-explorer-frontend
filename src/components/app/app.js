@@ -6,7 +6,7 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
-import { AppRoutes } from '../../constants/constants';
+import AppRoutes from '../../constants/constants';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import MoviesContext from '../../contexts/MoviesContext';
 import Header from '../header/header.jsx';

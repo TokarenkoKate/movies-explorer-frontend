@@ -5,6 +5,7 @@ export function debounce(fn, ms) {
     clearTimeout(timer);
     timer = setTimeout(() => {
       timer = null;
+      // eslint-disable-next-line prefer-rest-params
       fn.apply(this, arguments);
     }, ms);
   };
