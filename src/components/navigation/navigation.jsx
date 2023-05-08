@@ -1,6 +1,7 @@
-import { AppRoutes } from '../../constants/constants';
 import './navigation.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { AppRoutes } from '../../constants/constants';
 
 function Navigation() {
   return (
@@ -12,7 +13,7 @@ function Navigation() {
         <Link to={AppRoutes.SignIn} className='navigation__link navigation__link_signin'>Войти</Link>
       </li>
     </ul>
-  )
+  );
 }
 
 export default Navigation;

@@ -1,6 +1,7 @@
 import './logo.css';
-import logo from '../../images/logo.svg';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../images/logo.svg';
 import { AppRoutes } from '../../constants/constants';
 
 function Logo() {
@@ -10,7 +11,7 @@ function Logo() {
         <img src={logo} alt="Логотип" className='logo__icon' />
       </div>
     </Link>
-  )
+  );
 }
 
 export default Logo;

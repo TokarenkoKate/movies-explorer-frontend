@@ -1,11 +1,14 @@
 import './header.css';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppRoutes } from '../../constants/constants';
-import Logo from '../logo/logo';
-import Menu from '../menu/menu';
-import Navigation from '../navigation/navigation';
+import Logo from '../logo/logo.jsx';
+import Menu from '../menu/menu.jsx';
+import Navigation from '../navigation/navigation.jsx';
 
-function Header({ menuOpened, onMenuToggle, closeMenu }) {
+function Header({
+  menuOpened, onMenuToggle, closeMenu, isLoggedIn,
+}) {
   const location = useLocation();
 
   return (
@@ -13,19 +16,17 @@ function Header({ menuOpened, onMenuToggle, closeMenu }) {
       <nav className='header__nav'>
         <Logo />
         {
-          location.pathname === AppRoutes.Main && (
+          (!isLoggedIn) && (
             <Navigation />
           )}
         {
-          (location.pathname === AppRoutes.Movies || 
-            location.pathname === AppRoutes.SavedMovies || 
-            location.pathname === AppRoutes.Profile) && (
+          (isLoggedIn) && (
             <Menu menuOpened={menuOpened} onMenuToggle={onMenuToggle} closeMenu={closeMenu} />
           )
         }
       </nav>
     </header>
-  )
+  );
 }
 
 export default Header;

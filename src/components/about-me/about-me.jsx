@@ -1,6 +1,7 @@
 import './about-me.css';
+import React from 'react';
 import profileImage from '../../images/profile-image.jpg';
-import Portfolio from '../portfolio/portfolio';
+import Portfolio from '../portfolio/portfolio.jsx';
 
 function AboutMe() {
   return (
@@ -13,9 +14,11 @@ function AboutMe() {
           <p className='about-me__occupation'>Фронтенд-разработчик, 26 лет</p>
           <p className='about-me__description'>
             Я родилась в городе Ростов-на-Дону, сейчас проживаю в Израиле, город Хайфа.
-            По образованию я переводчик английского и немецкого языков. В 2022г. я решила сменить специальность и 
-            начала изучать веб-разработку. Так же, мне нравится мобильная разработка на React Native. 
-            В свободное время еще увлекаюсь 3D моделированием и скульптингом.
+            По образованию я переводчик английского и немецкого языков.
+            В 2022г. я решила сменить специальность и
+            начала изучать веб-разработку. Так же, мне нравится мобильная
+            разработка на React Native. В свободное время еще увлекаюсь
+            3D моделированием и скульптингом.
           </p>
           <a className='about-me__link' href='https://github.com/TokarenkoKate'>Github</a>
         </div>
@@ -25,7 +28,7 @@ function AboutMe() {
       </div>
       <Portfolio />
     </section>
-  )
+  );
 }
 
 export default AboutMe;

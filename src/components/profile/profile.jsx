@@ -1,63 +1,106 @@
 import './profile.css';
-import { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from "../../constants/constants";
+import { AppRoutes } from '../../constants/constants';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { editUserInfo } from '../../services/MainApi';
+import { useFormWithValidation } from '../../hooks/useFormWithValidations';
 
-function Profile() {
-  const [formData, setFormData] = useState({ profile_name: 'Виталий', profile_email: 'pochta@yandex.ru' });
-
-  const onChangeFormValue = (event) => {
-    const target = event.target;
-    const {name, value} = target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+function Profile({ setIsLoggedIn, setCurrentUser }) {
+  const user = useContext(CurrentUserContext);
+  const {
+    values, handleChange, errors, isValid,
+  } = useFormWithValidation({ profile_name: user.name, profile_email: user.email });
+  const [submitResultMesssage, setSubmitResultMessage] = useState('');
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
+  const [submitButtonText, setSubmitButtonText] = useState('Редактировать');
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setSubmitButtonText('Редактирование...');
+    editUserInfo({ name: values.profile_name, email: values.profile_email })
+      .then((userData) => {
+        setSubmitResultMessage('Информация обновлена.');
+        setCurrentUser(userData);
+      })
+      .catch(() => setSubmitResultMessage('Что-то пошло не так. Попробуйте еще раз'))
+      .finally(() => {
+        setTimeout(() => setSubmitResultMessage(''), 3000);
+        setSubmitButtonText('Редактировать');
+      });
   };
+
+  const onClickSignOut = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+  };
+
+  useEffect(() => {
+    if ((values.profile_name !== user.name
+      || values.profile_email !== user.email) && isValid) {
+      setSubmitButtonDisabled(false);
+    } else {
+      setSubmitButtonDisabled(true);
+    }
+  }, [values, isValid]);
 
   return (
     <div className='profile'>
-      <h1 className='profile__title'>Привет, Виталий!</h1>
-      <form className='profile-form' id='profile-form' name='profile-form'>
+      <h1 className='profile__title'>Привет, {user.name}</h1>
+      <form className='profile-form' id='profile-form' name='profile-form' onSubmit={handleSubmit}>
         <label
           className='profile-form__label'
           htmlFor='profile_name'
         >
           Имя
           <input
-            className='profile-form__input'
+            className={`profile-form__input ${errors?.profile_name ? 'profile-form__input_state_error' : ''}`}
             id='profile_name'
             name='profile_name'
             type='text'
-            value={formData.profile_name}
-            onChange={onChangeFormValue}
+            required
+            value={values?.profile_name || ''}
+            onChange={handleChange}
           />
         </label>
+        <p className='profile-form__input-error'>
+          {errors?.profile_name && errors.profile_name}
+        </p>
         <label
           className='profile-form__label'
           htmlFor='profile_email'
         >
           Email
           <input
-            className='profile-form__input'
+            className={`profile-form__input ${errors?.profile_email ? 'profile-form__input_state_error' : ''}`}
             id='profile_email'
             name='profile_email'
             type='email'
-            value={formData.profile_email}
-            onChange={onChangeFormValue}
+            required
+            value={values?.profile_email || ''}
+            onChange={handleChange}
           />
         </label>
+        <p className='profile-form__input-error'>
+          {errors?.profile_email && errors.profile_email}
+        </p>
+        <p className='profile-form__result-message'>
+          {submitResultMesssage}
+        </p>
       </form>
       <div className='profile__buttons-container'>
-        <button type='submit' form='profile-form' className='profile__submit-btn' onSubmit={handleSubmit}>Редактировать</button>
-        <Link to={AppRoutes.Main} className='profile__signout-link'>Выйти из аккаунта</Link>
+        <button
+          type='submit'
+          form='profile-form'
+          className={`profile__submit-btn ${submitButtonDisabled ? 'profile__submit-btn_disabled' : ''}`}
+          disabled={submitButtonDisabled}
+          onSubmit={handleSubmit}>
+            {submitButtonText}
+        </button>
+        <Link to={AppRoutes.Main} className='profile__signout-link' onClick={onClickSignOut}>Выйти из аккаунта</Link>
       </div>
     </div>
-  )
+  );
 }
 
 export default Profile;
