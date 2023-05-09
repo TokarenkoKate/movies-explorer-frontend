@@ -4,4 +4,4 @@
 
 [Pull request](https://github.com/TokarenkoKate/movies-explorer-frontend/pull/4)
 
-Frontend https://tokarenko.nomoredomains.work
+Frontend https://tokarenko.nomoredomains.monster
