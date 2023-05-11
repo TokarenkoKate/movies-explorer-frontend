@@ -47,7 +47,7 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
     } else {
       setSubmitButtonDisabled(true);
     }
-  }, [values, isValid]);
+  }, [values, isValid, user]);
 
   return (
     <div className='profile'>
