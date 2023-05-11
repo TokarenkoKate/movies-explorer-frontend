@@ -2,12 +2,12 @@ import './sign-up.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AppRoutes from '../../constants/constants';
-import { register } from '../../services/MainApi';
+import { authorize, register } from '../../services/MainApi';
 import Logo from '../logo/logo.jsx';
 import AuthForm from '../auth-form/auth-form.jsx';
 import Popup from '../popup/popup.jsx';
 
-function SignUp() {
+function SignUp({ onSignIn }) {
   const navigate = useNavigate();
 
   const [isPopupOpened, setIsPopupOpened] = useState(false);
@@ -21,12 +21,17 @@ function SignUp() {
     register(authFormName, authFormEmail, authFormPassword)
       .then((res) => {
         if (res) {
-          navigate(AppRoutes.SignIn, { replace: true });
+          authorize(authFormEmail, authFormPassword)
+            .then(() => {
+              onSignIn(true);
+              navigate(AppRoutes.Movies, { replace: true });
+            })
+            .catch(() => setIsPopupOpened(true));
         } else {
           setIsPopupOpened(true);
         }
       })
-      .catch((err) => console.log(err))
+      .catch(() => setIsPopupOpened(true))
       .finally(() => setButtonText('Зарегистрироваться'));
   };
 

@@ -62,9 +62,11 @@ function Movies({
   useEffect(() => {
     const moviesResult = JSON.parse(localStorage.getItem('moviesResult'));
 
-    setSearchValue(moviesResult.searchValue);
-    setFilteredMovies(moviesResult.currentMovies);
-    setCheckboxActive(moviesResult.checkboxActive);
+    if (moviesResult) {
+      setSearchValue(moviesResult.searchValue);
+      setFilteredMovies(moviesResult.currentMovies);
+      setCheckboxActive(moviesResult.checkboxActive);
+    }
   }, []);
 
   return (
