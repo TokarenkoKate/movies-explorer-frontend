@@ -20,8 +20,12 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
     setSubmitButtonText('Редактирование...');
     editUserInfo({ name: values.profile_name, email: values.profile_email })
       .then((userData) => {
-        setSubmitResultMessage('Информация обновлена.');
-        setCurrentUser(userData);
+        if (userData.email && userData.name) {
+          setSubmitResultMessage('Информация обновлена.');
+          setCurrentUser(userData);
+        } else {
+          setSubmitResultMessage('Пользователь с таким email уже существует.');
+        }
       })
       .catch(() => setSubmitResultMessage('Что-то пошло не так. Попробуйте еще раз'))
       .finally(() => {

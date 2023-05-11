@@ -38,9 +38,7 @@ export const editUserInfo = (data) => fetch(`${BASE_URL}/users/me`, {
     }
     throw new Error(`Ошибка: ${response.status}`);
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => err);
 
 export const getSavedMovies = () => fetch(`${BASE_URL}/movies`, {
   headers: {
