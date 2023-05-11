@@ -37,6 +37,10 @@ function SavedMovies({ savedMovies, onClickSaveMovie, onClickDeleteMovie }) {
     }
   }, [checkboxActive, savedMovies]);
 
+  useEffect(() => {
+    setFilteredMovies(savedMovies);
+  }, [savedMovies]);
+
   return (
     <div className="saved-movies">
       <div className='saved-movies__search-container'>

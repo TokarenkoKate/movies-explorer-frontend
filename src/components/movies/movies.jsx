@@ -39,6 +39,7 @@ function Movies({
   };
 
   const handleSubmit = () => {
+    setFilteredMovies([]);
     if (allMovies.length === 0) {
       setIsLoading(true);
       getAllMovies()
@@ -85,7 +86,7 @@ function Movies({
         </div>
       )}
       {isLoading && <Preloader />}
-      {filteredMovies.length && (
+      {!!filteredMovies.length && (
         <MoviesCatalogue
           movies={filteredMovies}
           onClickSaveMovie={onClickSaveMovie}

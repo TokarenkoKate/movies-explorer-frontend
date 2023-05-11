@@ -68,7 +68,7 @@ function MoviesCatalogue({
               />
             ))}
       </ul>
-      {location.pathname === AppRoutes.Movies && (
+      {!!restMovies.length && (
         <button className="movies-сatalogue__button" onClick={onClickShowMore}>
           Еще
         </button>
