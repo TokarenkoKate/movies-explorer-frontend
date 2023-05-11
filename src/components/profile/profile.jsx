@@ -59,6 +59,8 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
             id='profile_name'
             name='profile_name'
             type='text'
+            minLength={2}
+            maxLength={30}
             required
             value={values?.profile_name || ''}
             onChange={handleChange}
@@ -77,6 +79,7 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
             id='profile_email'
             name='profile_email'
             type='email'
+            pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
             required
             value={values?.profile_email || ''}
             onChange={handleChange}

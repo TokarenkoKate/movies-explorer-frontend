@@ -33,6 +33,7 @@ function AuthForm({ onSubmit, buttonText }) {
               value={values?.authFormName || ''}
               onChange={handleChange}
               minLength={2}
+              maxLength={30}
               required
             />
             <span className='auth-form__input-error'>
@@ -47,6 +48,7 @@ function AuthForm({ onSubmit, buttonText }) {
             id='authFormEmail'
             name='authFormEmail'
             type='email'
+            pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
             value={values?.authFormEmail || ''}
             onChange={handleChange}
             placeholder='E-mail'
