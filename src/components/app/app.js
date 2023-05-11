@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 import AppRoutes from '../../constants/constants';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import MoviesContext from '../../contexts/MoviesContext';
 import Header from '../header/header.jsx';
 import Main from '../main/main.jsx';
 import Footer from '../footer/footer.jsx';
@@ -38,12 +37,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
   const [savedMovies, setSavedMovies] = useState([]);
-
-  const [moviesContextValues, setMoviesContextValues] = useState({
-    previousSearchedValue: '',
-    previousFoundMovies: [],
-    previoudCheckboxState: false,
-  });
 
   const handleAddNewMovie = (newMovie) => addNewMovie(newMovie).then((movie) => {
     setSavedMovies((oldSavedMovies) => [...oldSavedMovies, movie]);
@@ -98,65 +91,62 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <MoviesContext.Provider value={moviesContextValues}>
-        {!isLoading && (
-          <div className='page'>
-            <div className={`page__overlay ${menuOpened ? 'page__overlay_active' : ''}`}></div>
-            <div className='page__container'>
-              <ScrollToTop />
-              {(location.pathname === AppRoutes.Main
-                || location.pathname === AppRoutes.Movies
-                || location.pathname === AppRoutes.SavedMovies
-                || location.pathname === AppRoutes.Profile)
-                && (
-                  <Header
-                    menuOpened={menuOpened}
-                    onMenuToggle={toggleOpenMenu}
-                    closeMenu={closeMenu}
-                    isLoggedIn={isLoggedIn}
-                  />)
-              }
-              <Routes>
-                <Route path={AppRoutes.Main} element={<Main />} />
-                <Route path={AppRoutes.Movies}
-                  element={
-                    <ProtectedRoute
-                      isLoggedIn={isLoggedIn}
-                      setMoviesContextValues={setMoviesContextValues}
-                      onClickSaveMovie={handleAddNewMovie}
-                      onClickDeleteMovie={handleMovieDelete}
-                      savedMovies={savedMovies}
-                      element={Movies}
-                    />}
-                />
-                <Route path={AppRoutes.SavedMovies}
-                  element={
-                    <ProtectedRoute
-                      isLoggedIn={isLoggedIn}
-                      savedMovies={savedMovies}
-                      onClickDeleteMovie={handleMovieDelete}
-                      element={SavedMovies}
-                    />
-                  } />
-                <Route path={AppRoutes.Profile} element={
+      {!isLoading && (
+        <div className='page'>
+          <div className={`page__overlay ${menuOpened ? 'page__overlay_active' : ''}`}></div>
+          <div className='page__container'>
+            <ScrollToTop />
+            {(location.pathname === AppRoutes.Main
+              || location.pathname === AppRoutes.Movies
+              || location.pathname === AppRoutes.SavedMovies
+              || location.pathname === AppRoutes.Profile)
+              && (
+                <Header
+                  menuOpened={menuOpened}
+                  onMenuToggle={toggleOpenMenu}
+                  closeMenu={closeMenu}
+                  isLoggedIn={isLoggedIn}
+                />)
+            }
+            <Routes>
+              <Route path={AppRoutes.Main} element={<Main />} />
+              <Route path={AppRoutes.Movies}
+                element={
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
-                    setIsLoggedIn={setIsLoggedIn}
-                    setCurrentUser={setCurrentUser}
-                    element={Profile} />}
+                    onClickSaveMovie={handleAddNewMovie}
+                    onClickDeleteMovie={handleMovieDelete}
+                    savedMovies={savedMovies}
+                    element={Movies}
+                  />}
+              />
+              <Route path={AppRoutes.SavedMovies}
+                element={
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    savedMovies={savedMovies}
+                    onClickDeleteMovie={handleMovieDelete}
+                    element={SavedMovies}
                   />
-                <Route path={AppRoutes.SignUp} element={<SignUp />} />
-                <Route path={AppRoutes.SignIn} element={<SignIn onSignIn={setIsLoggedIn} />} />
-                <Route path={AppRoutes.NotFound} element={<NotFound />} />
-              </Routes>
-              {(location.pathname === AppRoutes.Main
-                || location.pathname === AppRoutes.Movies
-                || location.pathname === AppRoutes.SavedMovies)
-                && <Footer />
-              }
-            </div>
-          </div>)}
-      </MoviesContext.Provider>
+                } />
+              <Route path={AppRoutes.Profile} element={
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+                  setCurrentUser={setCurrentUser}
+                  element={Profile} />}
+                />
+              <Route path={AppRoutes.SignUp} element={<SignUp />} />
+              <Route path={AppRoutes.SignIn} element={<SignIn onSignIn={setIsLoggedIn} />} />
+              <Route path={AppRoutes.NotFound} element={<NotFound />} />
+            </Routes>
+            {(location.pathname === AppRoutes.Main
+              || location.pathname === AppRoutes.Movies
+              || location.pathname === AppRoutes.SavedMovies)
+              && <Footer />
+            }
+          </div>
+        </div>)}
     </CurrentUserContext.Provider>
   );
 }

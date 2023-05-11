@@ -1,7 +1,6 @@
 import './movies.css';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getAllMovies } from '../../services/MoviesApi';
-import MoviesContext from '../../contexts/MoviesContext';
 import SearchForm from '../search-form/search-form.jsx';
 import MoviesCatalogue from '../movies-catalogue/movies-catalogue.jsx';
 import FilterCheckbox from '../filter-checkbox/filter-checkbox.jsx';
@@ -9,14 +8,12 @@ import Preloader from '../preloader/preloader.jsx';
 import { filterMoviesToSearchValue, filterMoviesToDuration } from '../../utils/utils';
 
 function Movies({
-  setMoviesContextValues, onClickSaveMovie, onClickDeleteMovie, savedMovies,
+  onClickSaveMovie, onClickDeleteMovie, savedMovies,
 }) {
-  const currentMoviesContext = useContext(MoviesContext);
-
   const [allMovies, setAllMovies] = useState([]);
-  const [searchValue, setSearchValue] = useState(currentMoviesContext.previousSearchedValue);
-  const [filteredMovies, setFilteredMovies] = useState(currentMoviesContext.previousFoundMovies);
-  const [checkboxActive, setCheckboxActive] = useState(currentMoviesContext.previoudCheckboxState);
+  const [searchValue, setSearchValue] = useState('');
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [checkboxActive, setCheckboxActive] = useState(false);
   const [notFoundError, setNotFoundError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,12 +30,11 @@ function Movies({
       setNotFoundError(false);
     }
 
-    setMoviesContextValues({
-      ...currentMoviesContext,
-      previousSearchedValue: searchValue,
-      previousFoundMovies: currentMovies,
-      previoudCheckboxState: checkboxActive,
-    });
+    localStorage.setItem('moviesResult', JSON.stringify({
+      searchValue,
+      currentMovies,
+      checkboxActive,
+    }));
     setFilteredMovies(currentMovies);
   };
 
@@ -63,6 +59,14 @@ function Movies({
     }
   }, [checkboxActive]);
 
+  useEffect(() => {
+    const moviesResult = JSON.parse(localStorage.getItem('moviesResult'));
+
+    setSearchValue(moviesResult.searchValue);
+    setFilteredMovies(moviesResult.currentMovies);
+    setCheckboxActive(moviesResult.checkboxActive);
+  }, []);
+
   return (
     <div className='movies'>
       <div className='movies__search-container'>
@@ -79,7 +83,7 @@ function Movies({
         </div>
       )}
       {isLoading && <Preloader />}
-      {filterMovies.length && (
+      {filteredMovies.length && (
         <MoviesCatalogue
           movies={filteredMovies}
           onClickSaveMovie={onClickSaveMovie}

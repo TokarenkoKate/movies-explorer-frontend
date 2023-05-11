@@ -32,6 +32,7 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
 
   const onClickSignOut = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('moviesResult');
     setIsLoggedIn(false);
   };
 
