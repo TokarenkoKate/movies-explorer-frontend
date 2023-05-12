@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   useLocation,
-  useNavigate,
 } from 'react-router-dom';
 import AppRoutes from '../../constants/constants';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
@@ -26,17 +25,15 @@ import LoadingPage from '../loading-page/loading-page.jsx';
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [menuOpened, setMenuOpened] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const toggleOpenMenu = () => setMenuOpened(!menuOpened);
   const closeMenu = () => setMenuOpened(false);
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
-  const [savedMovies, setSavedMovies] = useState([]);
 
   const handleAddNewMovie = (newMovie) => addNewMovie(newMovie).then((movie) => {
     setSavedMovies((oldSavedMovies) => [...oldSavedMovies, movie]);
@@ -52,46 +49,36 @@ function App() {
   const handleTokenCheck = () => {
     const token = localStorage.getItem('token');
     if (token) {
-      setIsLoading(true);
       tokenCheck(token)
         .then((data) => {
           if (data) {
             setIsLoggedIn(true);
             setCurrentUser({ name: data.name, email: data.email });
-            navigate(AppRoutes.Movies, { replace: true });
+            setIsLoaded(true);
           }
         })
-        .catch((err) => console.log(err))
-        .finally(() => setIsLoading(false));
+        .catch((err) => console.log(err));
+    } else {
+      setIsLoaded(true);
     }
   };
 
   useEffect(() => {
-    handleTokenCheck();
-  }, []);
-
-  useEffect(() => {
     if (isLoggedIn) {
-      setIsLoading(true);
       Promise.all([getUserInfo(), getSavedMovies()])
         .then(([user, previousSavedMovies]) => {
           setCurrentUser(user);
           setSavedMovies(previousSavedMovies);
-          setIsLoading(false);
         })
         .catch((err) => console.log(err.message));
     }
   }, [isLoggedIn]);
 
-  if (isLoading) {
-    return (
-      <LoadingPage />
-    );
-  }
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
 
-  return (
-    <CurrentUserContext.Provider value={currentUser}>
-      {!isLoading && (
+  return isLoaded ? (<CurrentUserContext.Provider value={currentUser}>
         <div className='page'>
           <div className={`page__overlay ${menuOpened ? 'page__overlay_active' : ''}`}></div>
           <div className='page__container'>
@@ -109,7 +96,7 @@ function App() {
                 />)
             }
             <Routes>
-              <Route path={AppRoutes.Main} element={<Main />} />
+              <Route path={AppRoutes.Main} element={<Main isLoggedIn={isLoggedIn} />} />
               <Route path={AppRoutes.Movies}
                 element={
                   <ProtectedRoute
@@ -146,9 +133,8 @@ function App() {
               && <Footer />
             }
           </div>
-        </div>)}
-    </CurrentUserContext.Provider>
-  );
+        </div>
+    </CurrentUserContext.Provider>) : (<LoadingPage />);
 }
 
 export default App;

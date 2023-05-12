@@ -6,7 +6,7 @@ const ProtectedRoute = ({ element: Component, ...props }) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!props.isLoggedIn) {
-      navigate(AppRoutes.SignIn, { replace: true });
+      navigate(AppRoutes.Main, { replace: true });
     }
   }, [props.isLoggedIn]);
 

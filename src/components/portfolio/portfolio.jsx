@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AppRoutes from '../../constants/constants';
 import arrow from '../../images/arrow.svg';
 
-function Portfolio() {
+function Portfolio({ isLoggedIn }) {
   return (
     <div className='portfolio'>
       <p className='portfolio__heading'>Портфолио</p>
@@ -22,7 +22,7 @@ function Portfolio() {
           </a>
         </li>
         <li className='portfolio__list-item'>
-          <Link className='portfolio__link' to={AppRoutes.Movies} target='_blank' rel='noopener noreferrer'>
+          <Link className='portfolio__link' to={isLoggedIn ? AppRoutes.Movies : AppRoutes.SignIn} target='_blank' rel='noopener noreferrer'>
             <p className='portfolio__link-title'>Одностраничное приложение</p>
             <img src={arrow} className='portfolio__arrow-icon' alt='Иконка перехода по ссылке на одностраничное приложение из портфолио' />
           </Link>

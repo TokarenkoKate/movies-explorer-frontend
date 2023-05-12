@@ -3,7 +3,7 @@ import React from 'react';
 import profileImage from '../../images/profile-image.jpg';
 import Portfolio from '../portfolio/portfolio.jsx';
 
-function AboutMe() {
+function AboutMe({ isLoggedIn }) {
   return (
     <section className='about-me'>
       <h3 className='about-me__subheading'>Студент</h3>
@@ -26,7 +26,7 @@ function AboutMe() {
           <img src={profileImage} className='about-me__photo' alt='Фото профиля' />
         </div>
       </div>
-      <Portfolio />
+      <Portfolio isLoggedIn={isLoggedIn}/>
     </section>
   );
 }

@@ -5,13 +5,13 @@ import AboutProject from '../about-project/about-project.jsx';
 import Techs from '../techs/techs.jsx';
 import AboutMe from '../about-me/about-me.jsx';
 
-function Main() {
+function Main({ isLoggedIn }) {
   return (
     <main>
       <Promo />
       <AboutProject />
       <Techs />
-      <AboutMe />
+      <AboutMe isLoggedIn={isLoggedIn}/>
     </main>
   );
 }
