@@ -1,7 +1,7 @@
 import './header.css';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import AppRoutes from '../../constants/constants';
+import { AppRoutes } from '../../constants/constants';
 import Logo from '../logo/logo.jsx';
 import Menu from '../menu/menu.jsx';
 import Navigation from '../navigation/navigation.jsx';

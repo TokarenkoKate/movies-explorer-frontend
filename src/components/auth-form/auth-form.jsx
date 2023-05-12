@@ -1,7 +1,7 @@
 import './auth-form.css';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import AppRoutes from '../../constants/constants';
+import { AppRoutes } from '../../constants/constants';
 import { useFormWithValidation } from '../../hooks/useFormWithValidations';
 
 function AuthForm({ onSubmit, buttonText }) {

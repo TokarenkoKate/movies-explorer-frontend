@@ -1,7 +1,7 @@
 import './movie-card.css';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import AppRoutes from '../../constants/constants';
+import { AppRoutes } from '../../constants/constants';
 import { BASE_URL } from '../../services/MoviesApi';
 import Spinner from '../spinner/spinner.jsx';
 

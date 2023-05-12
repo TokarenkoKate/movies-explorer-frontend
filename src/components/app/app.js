@@ -5,7 +5,7 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
-import AppRoutes from '../../constants/constants';
+import { AppRoutes } from '../../constants/constants';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import Header from '../header/header.jsx';
 import Main from '../main/main.jsx';

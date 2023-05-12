@@ -2,7 +2,7 @@ import './logo.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import AppRoutes from '../../constants/constants';
+import { AppRoutes } from '../../constants/constants';
 
 function Logo() {
   return (

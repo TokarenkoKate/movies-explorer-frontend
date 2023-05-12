@@ -1,7 +1,7 @@
 import './sign-up.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import AppRoutes from '../../constants/constants';
+import { AppRoutes } from '../../constants/constants';
 import { authorize, register } from '../../services/MainApi';
 import Logo from '../logo/logo.jsx';
 import AuthForm from '../auth-form/auth-form.jsx';

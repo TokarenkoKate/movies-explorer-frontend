@@ -1,7 +1,9 @@
 import './movies-catalogue.css';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import AppRoutes from '../../constants/constants';
+import {
+  AppRoutes, DisplayedMovies, DisplayedRestMovies, ScreenWidthBreakpoints,
+} from '../../constants/constants';
 import useCurrentWidth from '../../hooks/useCurrentWidth';
 import MovieCard from '../movie-card/movie-card.jsx';
 
@@ -18,15 +20,16 @@ function MoviesCatalogue({
   const width = useCurrentWidth();
 
   useEffect(() => {
-    if (width > 768) {
-      setCurrentMovies(movies.slice(0, 12));
-      setRestMovies(movies.slice(12));
-    } else if (width <= 768 && width > 480) {
-      setCurrentMovies(movies.slice(0, 8));
-      setRestMovies(movies.slice(8));
+    if (width > ScreenWidthBreakpoints.mediumWidth) {
+      setCurrentMovies(movies.slice(0, DisplayedMovies.fullWidth));
+      setRestMovies(movies.slice(DisplayedMovies.fullWidth));
+    } else if (width <= ScreenWidthBreakpoints.mediumWidth
+        && width > ScreenWidthBreakpoints.smallWidth) {
+      setCurrentMovies(movies.slice(0, DisplayedMovies.mediumWidth));
+      setRestMovies(movies.slice(DisplayedMovies.mediumWidth));
     } else {
-      setCurrentMovies(movies.slice(0, 5));
-      setRestMovies(movies.slice(5));
+      setCurrentMovies(movies.slice(0, DisplayedMovies.smallWidth));
+      setRestMovies(movies.slice(DisplayedMovies.smallWidth));
     }
   }, [width, movies]);
 
@@ -34,12 +37,12 @@ function MoviesCatalogue({
     if (!restMovies.length) {
       return;
     }
-    if (width > 768) {
-      setCurrentMovies([...currentMovies, ...restMovies.slice(0, 3)]);
-      setRestMovies([...restMovies.slice(3)]);
+    if (width > ScreenWidthBreakpoints.mediumWidth) {
+      setCurrentMovies([...currentMovies, ...restMovies.slice(0, DisplayedRestMovies.fullWidth)]);
+      setRestMovies([...restMovies.slice(DisplayedRestMovies.fullWidth)]);
     } else {
-      setCurrentMovies([...currentMovies, ...restMovies.slice(0, 2)]);
-      setRestMovies([...restMovies.slice(2)]);
+      setCurrentMovies([...currentMovies, ...restMovies.slice(0, DisplayedRestMovies.mediumWidth)]);
+      setRestMovies([...restMovies.slice(DisplayedRestMovies.mediumWidth)]);
     }
   };
 

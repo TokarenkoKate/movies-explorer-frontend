@@ -1,3 +1,5 @@
+import { ShortMovieDuration } from '../constants/constants';
+
 export function debounce(fn, ms) {
   let timer;
 
@@ -15,4 +17,6 @@ export const filterMoviesToSearchValue = (moviesArr, searchValue) => moviesArr.f
   (movie) => movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()),
 );
 
-export const filterMoviesToDuration = (movies) => movies.filter((movie) => movie.duration <= 40);
+export const filterMoviesToDuration = (movies) => movies.filter(
+  (movie) => movie.duration <= ShortMovieDuration,
+);

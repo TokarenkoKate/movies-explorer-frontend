@@ -1,4 +1,4 @@
-const AppRoutes = {
+export const AppRoutes = {
   Main: '/',
   Movies: '/movies',
   SavedMovies: '/saved-movies',
@@ -8,4 +8,20 @@ const AppRoutes = {
   NotFound: '*',
 };
 
-export default AppRoutes;
+export const DisplayedMovies = {
+  fullWidth: 12,
+  mediumWidth: 8,
+  smallWidth: 5,
+};
+
+export const DisplayedRestMovies = {
+  fullWidth: 3,
+  mediumWidth: 2,
+};
+
+export const ScreenWidthBreakpoints = {
+  mediumWidth: 756,
+  smallWidth: 480,
+};
+
+export const ShortMovieDuration = 40;
