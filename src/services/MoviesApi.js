@@ -11,6 +11,4 @@ export const getAllMovies = () => fetch(BASE_URL + PATH, {
   }
   throw new Error(`Ошибка: ${response.status}`);
 })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => err);

@@ -79,7 +79,7 @@ function AuthForm({ onSubmit, buttonText }) {
       <button
         type='submit'
         className={`auth-form__submit-btn ${!isValid ? 'auth-form__submit-btn_disabled' : ''}`}
-        disabled={!isValid}
+        disabled={!isValid || buttonText === 'Загрузка...'}
         onSubmit={handleSubmitForm}
       >
         {buttonText}

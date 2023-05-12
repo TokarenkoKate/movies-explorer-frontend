@@ -8,7 +8,7 @@ import Preloader from '../preloader/preloader.jsx';
 import { filterMoviesToSearchValue, filterMoviesToDuration } from '../../utils/utils';
 
 function Movies({
-  onClickSaveMovie, onClickDeleteMovie, savedMovies,
+  onClickSaveMovie, onClickDeleteMovie, savedMovies, setIsPopupOpened,
 }) {
   const [allMovies, setAllMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -18,24 +18,26 @@ function Movies({
   const [isLoading, setIsLoading] = useState(false);
 
   const filterMovies = (movies) => {
-    let currentMovies = filterMoviesToSearchValue(movies, searchValue);
+    if (movies.length) {
+      let currentMovies = filterMoviesToSearchValue(movies, searchValue);
 
-    if (checkboxActive) {
-      currentMovies = filterMoviesToDuration(currentMovies);
+      if (checkboxActive) {
+        currentMovies = filterMoviesToDuration(currentMovies);
+      }
+
+      if (!currentMovies.length) {
+        setNotFoundError(true);
+      } else {
+        setNotFoundError(false);
+      }
+
+      localStorage.setItem('moviesResult', JSON.stringify({
+        searchValue,
+        currentMovies,
+        checkboxActive,
+      }));
+      setFilteredMovies(currentMovies);
     }
-
-    if (!currentMovies.length) {
-      setNotFoundError(true);
-    } else {
-      setNotFoundError(false);
-    }
-
-    localStorage.setItem('moviesResult', JSON.stringify({
-      searchValue,
-      currentMovies,
-      checkboxActive,
-    }));
-    setFilteredMovies(currentMovies);
   };
 
   const handleSubmit = () => {
@@ -44,10 +46,14 @@ function Movies({
       setIsLoading(true);
       getAllMovies()
         .then((result) => {
-          setAllMovies(result);
-          filterMovies(result);
+          if (Array.isArray(result)) {
+            setAllMovies(result);
+            filterMovies(result);
+          } else {
+            setIsPopupOpened(true);
+          }
         })
-        .catch((err) => console.log(err))
+        .catch(() => setIsPopupOpened(true))
         .finally(() => setIsLoading(false));
     } else {
       filterMovies(allMovies);

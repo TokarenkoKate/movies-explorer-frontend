@@ -12,6 +12,7 @@ function SignIn({ onSignIn }) {
 
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [buttonText, setButtonText] = useState('Войти');
+  const [errorMessage, setErrorMessage] = useState('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
 
   const handleSubmit = (values) => {
     setButtonText('Загрузка...');
@@ -23,11 +24,15 @@ function SignIn({ onSignIn }) {
         if (res.token) {
           onSignIn(true);
           navigate(AppRoutes.Movies, { replace: true });
+        } else if (res instanceof TypeError) {
+          setErrorMessage(`Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен.
+          Подождите немного и попробуйте ещё раз.`);
+          setIsPopupOpened(true);
         } else {
+          setErrorMessage('Неверный логин или пароль, попробуйте еще раз.');
           setIsPopupOpened(true);
         }
       })
-      .catch((err) => console.log(err))
       .finally(() => setButtonText('Войти'));
   };
 
@@ -49,7 +54,7 @@ function SignIn({ onSignIn }) {
         <p className='sign-in__text'>Ещё не зарегистрированы?</p>
         <Link to={AppRoutes.SignUp} className='sign-in__text sign-in__text_link'>Регистрация</Link>
       </div>
-      <Popup message={'Неверный логин или пароль, попробуйте еще раз.'} isOpen={isPopupOpened} onClose={closePopup} />
+      <Popup message={errorMessage} isOpen={isPopupOpened} onClose={closePopup} />
     </div>
   );
 }

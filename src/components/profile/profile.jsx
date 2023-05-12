@@ -18,6 +18,7 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmitButtonText('Редактирование...');
+    setSubmitButtonDisabled(true);
     editUserInfo({ name: values.profile_name, email: values.profile_email })
       .then((userData) => {
         if (userData.email && userData.name) {
@@ -42,7 +43,9 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
 
   useEffect(() => {
     if ((values.profile_name !== user.name
-      || values.profile_email !== user.email) && isValid) {
+      || values.profile_email !== user.email)
+      && isValid
+      && submitButtonText !== 'Редактирование...') {
       setSubmitButtonDisabled(false);
     } else {
       setSubmitButtonDisabled(true);

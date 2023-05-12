@@ -22,6 +22,7 @@ import {
   getUserInfo, getSavedMovies, tokenCheck, addNewMovie, deleteMovie,
 } from '../../services/MainApi';
 import LoadingPage from '../loading-page/loading-page.jsx';
+import Popup from '../popup/popup.jsx';
 
 function App() {
   const location = useLocation();
@@ -31,33 +32,37 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isPopupOpened, setIsPopupOpened] = useState(false);
 
   const toggleOpenMenu = () => setMenuOpened(!menuOpened);
   const closeMenu = () => setMenuOpened(false);
+  const closePopup = () => setIsPopupOpened(false);
 
   const handleAddNewMovie = (newMovie) => addNewMovie(newMovie).then((movie) => {
     setSavedMovies((oldSavedMovies) => [...oldSavedMovies, movie]);
     return movie;
-  }).catch((err) => console.log(err));
+  }).catch(() => setIsPopupOpened(true));
 
   const handleMovieDelete = (id) => deleteMovie(id).then(() => {
     setSavedMovies((oldSavedMovies) => oldSavedMovies.filter(
       (currentMovie) => currentMovie._id !== id,
     ));
-  }).catch((err) => console.log(err));
+  }).catch(() => setIsPopupOpened(true));
 
   const handleTokenCheck = () => {
     const token = localStorage.getItem('token');
     if (token) {
       tokenCheck(token)
         .then((data) => {
-          if (data) {
+          if (data && !(data instanceof Error)) {
             setIsLoggedIn(true);
             setCurrentUser({ name: data.name, email: data.email });
             setIsLoaded(true);
+          } else {
+            setIsLoaded(true);
+            setIsPopupOpened(true);
           }
-        })
-        .catch((err) => console.log(err));
+        });
     } else {
       setIsLoaded(true);
     }
@@ -70,7 +75,7 @@ function App() {
           setCurrentUser(user);
           setSavedMovies(previousSavedMovies);
         })
-        .catch((err) => console.log(err.message));
+        .catch(() => setIsPopupOpened(true));
     }
   }, [isLoggedIn]);
 
@@ -104,6 +109,7 @@ function App() {
                     onClickSaveMovie={handleAddNewMovie}
                     onClickDeleteMovie={handleMovieDelete}
                     savedMovies={savedMovies}
+                    setIsPopupOpened={setIsPopupOpened}
                     element={Movies}
                   />}
               />
@@ -132,6 +138,11 @@ function App() {
               || location.pathname === AppRoutes.SavedMovies)
               && <Footer />
             }
+            <Popup
+              message={'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'}
+              isOpen={isPopupOpened}
+              onClose={closePopup}
+            />
           </div>
         </div>
     </CurrentUserContext.Provider>) : (<LoadingPage />);

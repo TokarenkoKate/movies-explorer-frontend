@@ -82,6 +82,7 @@
   height: 32px;
   cursor: pointer;
   background: url(./../../images/close.svg) no-repeat center transparent;
+  background-size: 32px;
   border: none;
   padding: 0;
   user-select: none;

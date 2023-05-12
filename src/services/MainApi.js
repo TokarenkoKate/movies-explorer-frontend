@@ -16,9 +16,7 @@ export const getUserInfo = () => fetch(`${BASE_URL}/users/me`, {
     }
     throw new Error(`Ошибка: ${response.status}`);
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => err);
 
 export const editUserInfo = (data) => fetch(`${BASE_URL}/users/me`, {
   headers: {
@@ -54,9 +52,7 @@ export const getSavedMovies = () => fetch(`${BASE_URL}/movies`, {
     }
     throw new Error(`Ошибка: ${response.status}`);
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => err);
 
 export const addNewMovie = (data) => fetch(`${BASE_URL}/movies`, {
   headers: {
@@ -84,9 +80,7 @@ export const addNewMovie = (data) => fetch(`${BASE_URL}/movies`, {
   }
   throw new Error(`Ошибка: ${response.status}`);
 })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => err);
 
 export const deleteMovie = (movieId) => fetch(`${BASE_URL}/movies/${movieId}`, {
   headers: {
@@ -102,9 +96,7 @@ export const deleteMovie = (movieId) => fetch(`${BASE_URL}/movies/${movieId}`, {
     }
     throw new Error(`Ошибка: ${response.status}`);
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => err);
 
 export const register = (name, email, password) => fetch(`${BASE_URL}/signup`, {
   method: 'POST',
