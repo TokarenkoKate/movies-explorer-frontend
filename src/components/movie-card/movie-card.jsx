@@ -57,7 +57,7 @@ function MovieCard({
     } else {
       setActiveLike(false);
     }
-  }, []);
+  }, [savedMovies]);
 
   return (
     <li className='movie-card'>
