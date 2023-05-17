@@ -129,8 +129,14 @@ function App() {
                   setCurrentUser={setCurrentUser}
                   element={Profile} />}
                 />
-              <Route path={AppRoutes.SignUp} element={<SignUp onSignIn={setIsLoggedIn} />} />
-              <Route path={AppRoutes.SignIn} element={<SignIn onSignIn={setIsLoggedIn} />} />
+              <Route
+                path={AppRoutes.SignUp}
+                element={<SignUp isLoggedIn={isLoggedIn} onSignIn={setIsLoggedIn} />}
+              />
+              <Route
+                path={AppRoutes.SignIn}
+                element={<SignIn isLoggedIn={isLoggedIn} onSignIn={setIsLoggedIn} />}
+              />
               <Route path={AppRoutes.NotFound} element={<NotFound />} />
             </Routes>
             {(location.pathname === AppRoutes.Main

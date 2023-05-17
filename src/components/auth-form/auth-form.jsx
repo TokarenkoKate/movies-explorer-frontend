@@ -4,9 +4,9 @@ import { useLocation } from 'react-router-dom';
 import { AppRoutes } from '../../constants/constants';
 import { useFormWithValidation } from '../../hooks/useFormWithValidations';
 
-function AuthForm({ onSubmit, buttonText }) {
+function AuthForm({ onSubmit, buttonText, isLoading }) {
   const {
-    values, handleChange, errors, isValid, resetForm,
+    values, handleChange, errors, isValid,
   } = useFormWithValidation();
 
   const location = useLocation();
@@ -15,7 +15,6 @@ function AuthForm({ onSubmit, buttonText }) {
     e.preventDefault();
 
     onSubmit(values);
-    resetForm();
   };
 
   return (
@@ -34,6 +33,7 @@ function AuthForm({ onSubmit, buttonText }) {
               onChange={handleChange}
               minLength={2}
               maxLength={30}
+              disabled={isLoading}
               required
             />
             <span className='auth-form__input-error'>
@@ -52,6 +52,7 @@ function AuthForm({ onSubmit, buttonText }) {
             value={values?.authFormEmail || ''}
             onChange={handleChange}
             placeholder='E-mail'
+            disabled={isLoading}
             required
           />
           <span className='auth-form__input-error'>
@@ -69,6 +70,7 @@ function AuthForm({ onSubmit, buttonText }) {
             onChange={handleChange}
             placeholder='Пароль'
             minLength={2}
+            disabled={isLoading}
             required
           />
           <span className='auth-form__input-error'>
@@ -78,8 +80,8 @@ function AuthForm({ onSubmit, buttonText }) {
       </div>
       <button
         type='submit'
-        className={`auth-form__submit-btn ${!isValid ? 'auth-form__submit-btn_disabled' : ''}`}
-        disabled={!isValid || buttonText === 'Загрузка...'}
+        className={`auth-form__submit-btn ${!isValid || isLoading ? 'auth-form__submit-btn_disabled' : ''}`}
+        disabled={!isValid || isLoading}
         onSubmit={handleSubmitForm}
       >
         {buttonText}

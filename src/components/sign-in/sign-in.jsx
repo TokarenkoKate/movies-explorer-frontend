@@ -7,14 +7,20 @@ import AuthForm from '../auth-form/auth-form.jsx';
 import { authorize } from '../../services/MainApi';
 import Popup from '../popup/popup.jsx';
 
-function SignIn({ onSignIn }) {
+function SignIn({ isLoggedIn, onSignIn }) {
   const navigate = useNavigate();
+
+  if (isLoggedIn) {
+    navigate(AppRoutes.Movies, { replace: true });
+  }
 
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [buttonText, setButtonText] = useState('Войти');
   const [errorMessage, setErrorMessage] = useState('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (values) => {
+    setIsLoading(true);
     setButtonText('Загрузка...');
 
     const { authFormEmail, authFormPassword } = values;
@@ -28,12 +34,14 @@ function SignIn({ onSignIn }) {
           setErrorMessage(`Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен.
           Подождите немного и попробуйте ещё раз.`);
           setIsPopupOpened(true);
+          setIsLoading(false);
         } else {
           setErrorMessage('Неверный логин или пароль, попробуйте еще раз.');
           setIsPopupOpened(true);
+          setIsLoading(false);
         }
       })
-      .finally(() => setButtonText('Войти'));
+      .finally(() => { setButtonText('Войти'); });
   };
 
   const closePopup = () => setIsPopupOpened(false);
@@ -42,13 +50,14 @@ function SignIn({ onSignIn }) {
     setButtonText('Войти');
   }, []);
 
-  return (
+  return !isLoggedIn && (
     <div className='sign-in'>
       <Logo />
       <h1 className='sign-in__title'>Рады видеть!</h1>
       <AuthForm
         onSubmit={handleSubmit}
         buttonText={buttonText}
+        isLoading={isLoading}
       />
       <div className='sign-in__link-container'>
         <p className='sign-in__text'>Ещё не зарегистрированы?</p>
