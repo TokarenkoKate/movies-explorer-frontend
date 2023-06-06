@@ -1,5 +1,6 @@
 import './about-project.css';
-import Duration from '../duration/duration';
+import React from 'react';
+import Duration from '../duration/duration.jsx';
 
 function AboutProject() {
   return (
@@ -12,7 +13,7 @@ function AboutProject() {
             Дипломный проект включал 5 этапов
           </h3>
           <p className='about__table-description'>
-            Составление плана, работу над бэкендом, вёрстку, 
+            Составление плана, работу над бэкендом, вёрстку,
             добавление функциональности и финальные доработки.
           </p>
         </div>
@@ -21,14 +22,14 @@ function AboutProject() {
             На выполнение диплома ушло 5 недель
           </h3>
           <p className='about__table-description'>
-            У каждого этапа был мягкий и жёсткий дедлайн, 
+            У каждого этапа был мягкий и жёсткий дедлайн,
             которые нужно было соблюдать, чтобы успешно защититься.
           </p>
         </div>
       </div>
       <Duration />
     </section>
-  )
+  );
 }
 
 export default AboutProject;

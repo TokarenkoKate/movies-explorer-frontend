@@ -1,4 +1,5 @@
 import './duration.css';
+import React from 'react';
 
 function Duration() {
   return (
@@ -16,7 +17,7 @@ function Duration() {
         <div className='duration__subheading'>Front-end</div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Duration;

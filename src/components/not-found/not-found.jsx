@@ -1,6 +1,7 @@
 import './not-found.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from "../../constants/constants";
+import { AppRoutes } from '../../constants/constants';
 
 function NotFound() {
   return (
@@ -11,7 +12,7 @@ function NotFound() {
       </div>
       <Link to={AppRoutes.Main} className='not-found__back-link'>Назад</Link>
     </div>
-  )
+  );
 }
 
 export default NotFound;

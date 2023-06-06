@@ -1,10 +1,11 @@
 import './menu.css';
+import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { AppRoutes } from '../../constants/constants';
-import BurgerMenu from "../burger-menu/burger-menu";
+import BurgerMenu from '../burger-menu/burger-menu.jsx';
 import accountIcon from '../../images/account_icon.svg';
 
-function Menu({menuOpened, onMenuToggle, closeMenu}) {
+function Menu({ menuOpened, onMenuToggle, closeMenu }) {
   return (
     <>
       <BurgerMenu onMenuToggle={onMenuToggle} />
@@ -14,16 +15,28 @@ function Menu({menuOpened, onMenuToggle, closeMenu}) {
           <div className='menu__cross-bar menu__cross-bar_2'></div>
         </div>
         <div className='menu__links-wrapper'>
-          <NavLink to={AppRoutes.Main} onClick={closeMenu} className={({ isActive }) => 
-            `menu__link menu__link_main ${isActive ? "menu__link_active" : ""}`}>
+          <NavLink
+            to={AppRoutes.Main}
+            onClick={closeMenu}
+            className={({ isActive }) => `menu__link menu__link_main
+              ${isActive ? 'menu__link_active' : ''}`}
+          >
             Главная
           </NavLink>
-          <NavLink to={AppRoutes.Movies} onClick={closeMenu} className={({ isActive }) =>
-            `menu__link ${isActive ? "menu__link_active" : ""}`}>
+          <NavLink
+            to={AppRoutes.Movies}
+            onClick={closeMenu}
+            className={({ isActive }) => `menu__link
+              ${isActive ? 'menu__link_active' : ''}`}
+          >
             Фильмы
           </NavLink>
-          <NavLink to={AppRoutes.SavedMovies} onClick={closeMenu} className={({ isActive }) =>
-            `menu__link ${isActive ? "menu__link_active" : ""}`}>
+          <NavLink
+            to={AppRoutes.SavedMovies}
+            onClick={closeMenu}
+            className={({ isActive }) => `menu__link
+              ${isActive ? 'menu__link_active' : ''}`}
+          >
             Сохранённые фильмы
           </NavLink>
         </div>
@@ -39,7 +52,7 @@ function Menu({menuOpened, onMenuToggle, closeMenu}) {
         </Link>
       </div>
     </>
-  )
+  );
 }
 
 export default Menu;
