@@ -1,6 +1,7 @@
 import './movies-catalogue.css';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   AppRoutes, DisplayedMovies, DisplayedRestMovies, ScreenWidthBreakpoints,
 } from '../../constants/constants';
@@ -13,6 +14,7 @@ function MoviesCatalogue({
   onClickDeleteMovie,
   savedMovies,
 }) {
+  const { t } = useTranslation();
   const location = useLocation();
 
   const [currentMovies, setCurrentMovies] = useState([]);
@@ -73,7 +75,7 @@ function MoviesCatalogue({
       </ul>
       {!!restMovies.length && (
         <button className="movies-сatalogue__button" onClick={onClickShowMore}>
-          Еще
+          {t('movies.more')}
         </button>
       )}
     </div>
