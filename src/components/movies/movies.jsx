@@ -1,5 +1,6 @@
 import './movies.css';
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getAllMovies } from '../../services/MoviesApi';
 import SearchForm from '../search-form/search-form.jsx';
 import MoviesCatalogue from '../movies-catalogue/movies-catalogue.jsx';
@@ -16,6 +17,7 @@ function Movies({
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [notFoundError, setNotFoundError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   const filterMovies = (movies) => {
     if (movies.length) {
@@ -88,7 +90,7 @@ function Movies({
       </div>
       {(notFoundError && !filteredMovies.length) && (
         <div className='movies__not-found'>
-          <p className='movies__not-found-err'>Ничего не найдено</p>
+          <p className='movies__not-found-err'>{t('movies.nothing_found')}</p>
         </div>
       )}
       {isLoading && <Preloader />}

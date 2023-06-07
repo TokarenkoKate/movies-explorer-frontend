@@ -1,0 +1,91 @@
+{
+  "header": {
+    "signup": "Sign Up",
+    "signin": "Sign In",
+    "main": "Main",
+    "movies": "Movies",
+    "saved_movies": "Saved Movies",
+    "account": "Account",
+    "account_icon_alt": "Icon opening user account"
+  },
+  "main": {
+    "promo": {
+      "header": "Web development student's graduation project",
+      "promo_image_alt": "The promo image of the app"
+    },
+    "about_project": {
+      "header": "About the project",
+      "diploma_included": "The graduation project included 5 stages",
+      "description": "Making a plan, working on the backend, HTML, CSS layout, functionality with React and final improvements.",
+      "duration": "It took 5 weeks to complete the project",
+      "duration_description": "Each stage had a soft and hard deadline that had to be met in order to successfully pass.",
+      "one_week": "1 week",
+      "back_end": "Back-end",
+      "four_weeks": "4 weeks",
+      "front_end": "Front-end"
+    },
+    "techs": {
+      "title": "Technologies",
+      "amount": "7 technologies",
+      "description": "During the web development course, we mastered the technologies that we applied in the graduation project."
+    },
+    "about_me": {
+      "student": "Student",
+      "name": "Ekaterina",
+      "occupation": "Frontend Developer, 26 y/o",
+      "description": "I was born in Rostov-on-Don, Russia, now I live in Israel, Haifa. I've got my bachelor's degree in Linguistics as a translator of the English and German languages. In 2022, I decided to change my career and started studying web development. Also, I like mobile development on React Native. In my free time, I am also fond of 3D modeling and sculpting.",
+      "profile_pic_alt": "Profile Photo",
+      "portfolio": "Portfolio",
+      "static_site": "Static website",
+      "static_site_alt": "Icon for clicking on a link to a static website from the portfolio",
+      "adaptive_site": "Adaptive website",
+      "adaptive_site_alt": "The icon of clicking on the link to the adaptive website from the portfolio",
+      "single_page": "Single-page application",
+      "single_page_alt": "Icon for clicking on a link to a single-page application from the portfolio"
+    }
+  },
+  "sign_in": {
+    "sign_in": "Sign in",
+    "server_error": "An error occurred during the request. There may be a connection problem or the server is unavailable. Wait a bit and try again",
+    "loading": "Loading...",
+    "incorrect_login": "Invalid username or password, try again.",
+    "glad_to_see": "Glad to see you!",
+    "not_signed_up": "Not signed up yet?",
+    "sign_up": "Sign up"
+  },
+  "sign_up": {
+    "sign_up": "Sign up",
+    "error": "Something went wrong! Try again.",
+    "loading": "Loading...",
+    "user_exists_error": "A user with this email already exists.",
+    "welcome": "Welcome!",
+    "already_signed_up": "Already signed up?",
+    "sign_in": "Sign in"
+  },
+  "auth_form": {
+    "name": "Name",
+    "password": "Password"
+  },
+  "movies": {
+    "movie": "Movie",
+    "search_icon_alt": "The icon for submitting the movie search form",
+    "short_movies": "Short movies",
+    "nothing_found": "Found nothing",
+    "hours": "h",
+    "minutes": "min"
+  },
+  "profile": {
+    "edit": "Edit",
+    "editing": "Editing...",
+    "data_updated": "Information is updated",
+    "user_exists_error": "A user with this email already exists.",
+    "error": "Something went wrong. Try again",
+    "greeting": "Hello",
+    "name": "Name",
+    "sign_out": "Sign out"
+  },
+  "footer": {
+    "project": "Educational project of Yandex Praktikum х BeatFilm.",
+    "yandex": "Yandex Praktikum"
+  }
+}

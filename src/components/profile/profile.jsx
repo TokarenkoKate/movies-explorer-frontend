@@ -1,37 +1,39 @@
 import './profile.css';
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AppRoutes } from '../../constants/constants';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { editUserInfo } from '../../services/MainApi';
 import { useFormWithValidation } from '../../hooks/useFormWithValidations';
 
 function Profile({ setIsLoggedIn, setCurrentUser }) {
+  const { t } = useTranslation();
   const user = useContext(CurrentUserContext);
   const {
     values, handleChange, errors, isValid,
   } = useFormWithValidation({ profile_name: user.name, profile_email: user.email });
   const [submitResultMesssage, setSubmitResultMessage] = useState('');
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
-  const [submitButtonText, setSubmitButtonText] = useState('Редактировать');
+  const [submitButtonText, setSubmitButtonText] = useState(t('profile.edit'));
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmitButtonText('Редактирование...');
+    setSubmitButtonText(t('profile.edit'));
     setSubmitButtonDisabled(true);
     editUserInfo({ name: values.profile_name, email: values.profile_email })
       .then((userData) => {
         if (userData.email && userData.name) {
-          setSubmitResultMessage('Информация обновлена.');
+          setSubmitResultMessage(t('profile.data_updated'));
           setCurrentUser(userData);
         } else {
-          setSubmitResultMessage('Пользователь с таким email уже существует.');
+          setSubmitResultMessage(t('profile.user_exists_error'));
         }
       })
-      .catch(() => setSubmitResultMessage('Что-то пошло не так. Попробуйте еще раз'))
+      .catch(() => setSubmitResultMessage(t('profile.error')))
       .finally(() => {
         setTimeout(() => setSubmitResultMessage(''), 3000);
-        setSubmitButtonText('Редактировать');
+        setSubmitButtonText(t('profile.edit'));
       });
   };
 
@@ -45,7 +47,7 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
     if ((values.profile_name !== user.name
       || values.profile_email !== user.email)
       && isValid
-      && submitButtonText !== 'Редактирование...') {
+      && submitButtonText !== t('profile.editing')) {
       setSubmitButtonDisabled(false);
     } else {
       setSubmitButtonDisabled(true);
@@ -54,13 +56,13 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
 
   return (
     <div className='profile'>
-      <h1 className='profile__title'>Привет, {user.name}</h1>
+      <h1 className='profile__title'>{t('profile.greeting')}, {user.name}</h1>
       <form className='profile-form' id='profile-form' name='profile-form' onSubmit={handleSubmit}>
         <label
           className='profile-form__label'
           htmlFor='profile_name'
         >
-          Имя
+          {t('profile.name')}
           <input
             className={`profile-form__input ${errors?.profile_name ? 'profile-form__input_state_error' : ''}`}
             id='profile_name'
@@ -108,7 +110,7 @@ function Profile({ setIsLoggedIn, setCurrentUser }) {
           onSubmit={handleSubmit}>
             {submitButtonText}
         </button>
-        <Link to={AppRoutes.Main} className='profile__signout-link' onClick={onClickSignOut}>Выйти из аккаунта</Link>
+        <Link to={AppRoutes.Main} className='profile__signout-link' onClick={onClickSignOut}>{t('profile.sign_out')}</Link>
       </div>
     </div>
   );

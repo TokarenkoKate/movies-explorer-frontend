@@ -1,13 +1,15 @@
 import './filter-checkbox.css';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function FilterCheckbox({ checkboxActive, setCheckboxActive }) {
+  const { t } = useTranslation();
   const onToggleCheckbox = () => setCheckboxActive(!checkboxActive);
 
   return (
     <div className='filter-checkbox'>
       <p className='filter-checkbox__title'>
-        Короткометражки
+        {t('movies.short_movies')}
       </p>
       <label className="filter-checkbox__switch">
         <input

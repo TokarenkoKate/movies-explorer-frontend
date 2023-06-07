@@ -1,10 +1,12 @@
 import './auth-form.css';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AppRoutes } from '../../constants/constants';
 import { useFormWithValidation } from '../../hooks/useFormWithValidations';
 
 function AuthForm({ onSubmit, buttonText, isLoading }) {
+  const { t } = useTranslation();
   const {
     values, handleChange, errors, isValid,
   } = useFormWithValidation();
@@ -22,12 +24,12 @@ function AuthForm({ onSubmit, buttonText, isLoading }) {
       <div className='auth-form__container'>
         {location.pathname === AppRoutes.SignUp && (
           <label htmlFor='authFormName' className='auth-form__input-label'>
-            Имя
+            {t('auth_form.name')}
             <input
               className={`auth-form__input ${errors?.authFormName ? 'auth-form__input_state_error' : ''}`}
               id='authFormName'
               name='authFormName'
-              placeholder='Имя'
+              placeholder={t('auth_form.name')}
               type='text'
               value={values?.authFormName || ''}
               onChange={handleChange}
@@ -60,7 +62,7 @@ function AuthForm({ onSubmit, buttonText, isLoading }) {
           </span>
         </label>
         <label htmlFor='authFormPassword' className='auth-form__input-label'>
-          Пароль
+          {t('auth_form.password')}
           <input
             className={`auth-form__input ${errors?.authFormPassword ? 'auth-form__input_state_error' : ''}`}
             id='authFormPassword'
@@ -68,7 +70,7 @@ function AuthForm({ onSubmit, buttonText, isLoading }) {
             type='password'
             value={values?.authFormPassword || ''}
             onChange={handleChange}
-            placeholder='Пароль'
+            placeholder={t('auth_form.password')}
             minLength={2}
             disabled={isLoading}
             required

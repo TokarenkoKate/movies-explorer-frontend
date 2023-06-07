@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  min-width: 132px;
 }
 
 @media screen and (max-width: 768px) {
@@ -29,6 +30,7 @@
   position: relative;
   display: inline-block;
   width: 36px;
+  min-width: 36px;
   height: 20px;
 }
 

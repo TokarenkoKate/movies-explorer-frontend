@@ -14,7 +14,7 @@ export function debounce(fn, ms) {
 }
 
 export const filterMoviesToSearchValue = (moviesArr, searchValue) => moviesArr.filter(
-  (movie) => movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()),
+  (movie) => movie.nameEN.toLowerCase().includes(searchValue.toLowerCase()),
 );
 
 export const filterMoviesToDuration = (movies) => movies.filter(

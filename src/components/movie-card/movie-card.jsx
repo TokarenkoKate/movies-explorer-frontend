@@ -1,6 +1,7 @@
 import './movie-card.css';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AppRoutes } from '../../constants/constants';
 import { BASE_URL } from '../../services/MoviesApi';
 import Spinner from '../spinner/spinner.jsx';
@@ -12,6 +13,7 @@ function MovieCard({
   const [activeLike, setActiveLike] = useState(false);
   const [savedMovieId, setSavedMovieId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const toggleLikeCard = () => {
     setIsLoading(true);
@@ -42,9 +44,9 @@ function MovieCard({
     const hours = Math.floor(movie.duration / 60);
 
     if (hours !== 0) {
-      return `${hours}ч ${minutes}м`;
+      return `${hours}${t('movies.hours')} ${minutes}${t('movies.minutes')}`;
     }
-    return `${minutes}м`;
+    return `${minutes}${t('movies.minutes')}`;
   };
 
   useEffect(() => {
@@ -66,12 +68,12 @@ function MovieCard({
           src={typeof (movie.image) === 'string'
             ? movie.image
             : BASE_URL + movie.image.url}
-          className='movie-card__image' alt={movie.nameRU}
+          className='movie-card__image' alt={i18n.language === 'en' ? movie.nameEN : movie.nameRU}
         />
       </a>
         <div className='movie-card__content'>
           <div className='movie-card__row'>
-            <p className='movie-card__title'>{movie.nameRU}</p>
+            <p className='movie-card__title'>{i18n.language === 'en' ? movie.nameEN : movie.nameRU}</p>
             {location.pathname === AppRoutes.Movies && (
               <button className={
                 `movie-card__like-btn ${activeLike ? 'movie-card__like-btn_active' : ''}`}
